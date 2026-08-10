@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Placeholder AI project thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d7f0ed"/>
+      <stop offset="100%" stop-color="#eef3f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="600" cy="330" r="120" fill="none" stroke="#0f766e" stroke-width="8" opacity="0.35"/>
+  <circle cx="600" cy="330" r="70" fill="#0f766e" opacity="0.2"/>
+  <rect x="360" y="500" width="480" height="22" rx="6" fill="#0f766e" opacity="0.7"/>
+  <rect x="420" y="546" width="360" height="16" rx="4" fill="#9aabba"/>
+  <text x="600" y="650" text-anchor="middle" fill="#5b6b7a" font-family="system-ui,sans-serif" font-size="36">AI Project Placeholder</text>
+</svg>
