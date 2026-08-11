@@ -8,26 +8,25 @@ export default function NotFound() {
         404
       </p>
       <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-        Page not found
+        페이지를 찾을 수 없습니다
       </h1>
       <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-        The page or project you requested does not exist. It may have been
-        removed, or the slug is incorrect.
+        요청하신 페이지 또는 프로젝트가 존재하지 않습니다. 주소가 올바른지
+        확인해 주세요.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
         <Button href="/" variant="primary">
-          Go home
+          홈으로
         </Button>
         <Button href="/#projects" variant="secondary">
-          Browse projects
+          프로젝트 보기
         </Button>
       </div>
       <p className="mt-6 text-sm text-subtle">
-        Or{" "}
+        또는{" "}
         <Link href="/" className="text-accent hover:text-accent-hover">
-          return to the homepage
+          홈페이지로 돌아가기
         </Link>
-        .
       </p>
     </div>
   );

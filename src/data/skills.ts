@@ -1,23 +1,59 @@
 import type { SkillGroup } from "@/types/skill";
 
 /**
- * Placeholder skill groups — replace labels and items with your stack.
+ * `core` — career-wide stack
+ * `current` — stack used in the current / recent MES project environment
  */
 export const skills: SkillGroup[] = [
   {
     category: "Frontend",
-    items: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
+    scope: "core",
+    items: ["JavaScript", "Vue.js", "HTML", "CSS"],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "API Design", "Databases"],
+    category: "Backend / API",
+    scope: "core",
+    items: ["REST API", "Spring Boot"],
   },
   {
-    category: "AI",
-    items: ["LLM Apps", "Prompt Engineering", "RAG (placeholder)"],
+    category: "Database",
+    scope: "core",
+    items: ["MSSQL", "Oracle"],
   },
   {
     category: "Tools",
-    items: ["Git", "GitHub", "Vercel", "Figma"],
+    scope: "core",
+    items: [
+      "Visual Studio Code",
+      "IntelliJ",
+      "STS4",
+      "DBeaver",
+      "Git",
+      "Maven",
+    ],
+  },
+  {
+    category: "MES / Domain",
+    scope: "core",
+    items: [
+      "MES",
+      "Digital Factory",
+      "Manufacturing Solution",
+      "Web UI",
+    ],
+  },
+  {
+    category: "Frontend",
+    scope: "current",
+    items: [
+      "Vue 3",
+      "TypeScript",
+      "Vite",
+      "Pinia",
+      "Vue Router",
+      "Axios",
+      "Element Plus",
+      "AUIGrid",
+    ],
   },
 ];

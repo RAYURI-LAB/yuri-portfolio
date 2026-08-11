@@ -29,12 +29,28 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "Frontend",
+    "Web UI",
+    "MES",
+    "Digital Factory",
+    "Vue.js",
+    "제조 솔루션",
+    "라유리",
+  ],
+  authors: [{ name: siteConfig.name }],
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    locale: "ko_KR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="ko"
       className={`${syne.variable} ${sourceSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">

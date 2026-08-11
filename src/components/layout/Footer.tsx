@@ -1,4 +1,3 @@
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { profile } from "@/data/profile";
 
 export function Footer() {
@@ -6,17 +5,11 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-border bg-surface">
-      <div className="container-page flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
+      <div className="container-page flex flex-col gap-2 py-8 md:flex-row md:items-center md:justify-between">
         <p className="text-sm text-muted">
-          © {year} {profile.name}. Portfolio scaffold — content placeholders.
+          © {year} {profile.name}. Frontend / Web UI Developer.
         </p>
-        <ul className="flex flex-wrap gap-4">
-          {profile.socials.map((social) => (
-            <li key={social.href}>
-              <ExternalLink href={social.href}>{social.label}</ExternalLink>
-            </li>
-          ))}
-        </ul>
+        <p className="text-sm text-subtle">MES · Digital Factory · Web UI</p>
       </div>
     </footer>
   );

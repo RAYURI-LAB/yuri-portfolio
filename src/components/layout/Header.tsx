@@ -36,7 +36,7 @@ export function Header() {
           className="inline-flex items-center justify-center rounded-[var(--radius-md)] border border-border bg-surface p-2 text-foreground md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
           onClick={() => setOpen((value) => !value)}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}

@@ -3,38 +3,46 @@ import { profile } from "@/data/profile";
 
 export function HeroSection() {
   return (
-    <section className="relative isolate min-h-[calc(100vh-var(--header-height))] overflow-hidden hero-atmosphere">
-      <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
-
-      <div className="container-page relative flex min-h-[calc(100vh-var(--header-height))] flex-col justify-center py-20 md:py-28">
+    <section className="hero-atmosphere relative isolate overflow-hidden border-b border-border">
+      <div
+        className="hero-grid pointer-events-none absolute inset-0"
+        aria-hidden
+      />
+      <div className="container-page relative flex flex-col justify-center py-20 md:min-h-[calc(100vh-var(--header-height))] md:py-28">
         <div className="max-w-3xl">
-          <p className="animate-fade-up text-sm font-medium tracking-[0.16em] text-accent uppercase">
-            Portfolio
+          <p className="text-sm font-medium tracking-[0.14em] text-accent uppercase">
+            {profile.yearsExperience} Years · MES · Web UI
           </p>
-          <h1 className="font-display animate-fade-up animate-delay-1 mt-4 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
+          <h1 className="font-display mt-4 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
             {profile.name}
           </h1>
-          <p className="animate-fade-up animate-delay-2 mt-4 text-xl font-medium text-accent-ink md:text-2xl">
+          <p className="mt-3 text-lg font-medium text-accent-ink md:text-xl">
             {profile.title}
           </p>
-          <p className="animate-fade-up animate-delay-3 mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
             {profile.tagline}
           </p>
 
-          <div className="animate-fade-up animate-delay-3 mt-10 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-2" aria-label="핵심 분야">
+            {profile.focusAreas.slice(0, 4).map((area) => (
+              <span
+                key={area}
+                className="rounded-[var(--radius-sm)] border border-border bg-surface/80 px-3 py-1.5 text-xs font-medium text-muted"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
             <Button href="/#projects" variant="primary">
-              View projects
+              프로젝트 보기
             </Button>
-            <Button href="/#contact" variant="secondary">
-              Contact
+            <Button href="/#experience" variant="secondary">
+              경력 보기
             </Button>
           </div>
         </div>
-
-        <div
-          className="animate-fade-in animate-delay-3 pointer-events-none absolute right-[-8%] bottom-[-12%] hidden h-[22rem] w-[22rem] rounded-full border border-border/70 bg-accent/5 md:block"
-          aria-hidden
-        />
       </div>
     </section>
   );

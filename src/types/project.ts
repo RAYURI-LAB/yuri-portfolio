@@ -1,21 +1,23 @@
-export type ProjectCategory = "web" | "ai" | "tool" | "other";
-export type ProjectStatus = "completed" | "in-progress" | "archived";
+export type ProjectCategory = "mes" | "web" | "ai" | "other";
 
 export interface Project {
   slug: string;
   title: string;
   summary: string;
   description: string;
+  client: string;
+  role: string;
+  period: string;
+  periodLabel: string;
+  participationRate?: string;
   category: ProjectCategory;
-  status: ProjectStatus;
   featured: boolean;
+  responsibilities: string[];
   techStack: string[];
-  thumbnail: string;
-  images?: string[];
+  environment: string[];
+  /** Optional public links — omitted for confidential client work. */
   githubUrl?: string;
   liveDemoUrl?: string;
-  highlights?: string[];
-  role?: string;
-  period?: string;
+  thumbnail?: string;
   order: number;
 }

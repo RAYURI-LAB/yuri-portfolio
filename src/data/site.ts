@@ -1,14 +1,16 @@
 import type { SiteConfig } from "@/types/site";
 
 export const siteConfig: SiteConfig = {
-  name: "Your Name",
-  title: "Your Name — Developer Portfolio",
+  name: "라유리",
+  title: "라유리 — Frontend / Web UI Developer",
   description:
-    "Personal developer portfolio. Placeholder content — replace with your own.",
+    "9년 경력 Frontend / Web UI 개발자. MES·Digital Factory·제조 솔루션 Web UI 개발 포트폴리오.",
   nav: [
     { label: "About", href: "/#about" },
-    { label: "Skills", href: "/#skills" },
+    { label: "Experience", href: "/#experience" },
     { label: "Projects", href: "/#projects" },
+    { label: "Skills", href: "/#skills" },
+    { label: "Certifications", href: "/#certifications" },
     { label: "Contact", href: "/#contact" },
   ],
 };
