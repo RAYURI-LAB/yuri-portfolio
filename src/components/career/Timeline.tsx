@@ -7,9 +7,13 @@ interface TimelineProps {
 
 export function Timeline({ items }: TimelineProps) {
   return (
-    <ol className="space-y-6 md:space-y-8">
-      {items.map((item) => (
-        <TimelineItem key={item.id} item={item} />
+    <ol>
+      {items.map((item, index) => (
+        <TimelineItem
+          key={item.id}
+          item={item}
+          isLast={index === items.length - 1}
+        />
       ))}
     </ol>
   );

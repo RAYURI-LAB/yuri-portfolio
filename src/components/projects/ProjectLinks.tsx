@@ -20,14 +20,18 @@ export function ProjectLinks({
     <div className={`flex flex-wrap gap-3 ${className}`}>
       {githubUrl ? (
         <Button href={githubUrl} external variant="secondary">
-          <Code2 className="size-4" aria-hidden />
-          GitHub
+          <Code2 className="size-3.5" aria-hidden />
+          <span className="label-mono text-[0.7rem] tracking-[0.18em]">
+            GitHub
+          </span>
         </Button>
       ) : null}
       {liveDemoUrl ? (
         <Button href={liveDemoUrl} external variant="primary">
-          <ExternalLinkIcon className="size-4" aria-hidden />
-          Live Demo
+          <ExternalLinkIcon className="size-3.5" aria-hidden />
+          <span className="label-mono text-[0.7rem] tracking-[0.18em]">
+            Live Demo
+          </span>
         </Button>
       ) : null}
     </div>

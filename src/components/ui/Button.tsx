@@ -4,16 +4,14 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    "bg-accent text-white hover:bg-accent-hover focus-visible:ring-accent",
+  primary: "bg-foreground text-background hover:bg-[#3a3a3a]",
   secondary:
-    "border border-border-strong bg-surface text-foreground hover:border-accent hover:text-accent-ink focus-visible:ring-accent",
-  ghost:
-    "text-muted hover:bg-surface-muted hover:text-foreground focus-visible:ring-accent",
+    "border border-border-strong bg-transparent text-foreground hover:border-accent hover:bg-accent-soft/60",
+  ghost: "text-muted hover:bg-surface-muted hover:text-foreground",
 };
 
 const baseClass =
-  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "group inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-out";
 
 interface SharedProps {
   variant?: ButtonVariant;

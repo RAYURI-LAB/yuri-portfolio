@@ -8,6 +8,7 @@ export function ProjectsSection() {
   return (
     <Section
       id="projects"
+      index="03"
       eyebrow="Projects"
       title="프로젝트"
       description="참여한 MES·Digital Factory 프로젝트입니다. 카드를 선택하면 상세 내용을 확인할 수 있습니다."

@@ -8,62 +8,96 @@ interface ProjectDetailProps {
 }
 
 export function ProjectDetail({ project }: ProjectDetailProps) {
+  const meta = [
+    { label: "Client", value: project.client },
+    { label: "Role", value: project.role },
+    { label: "Period", value: project.periodLabel },
+    ...(project.participationRate
+      ? [{ label: "Share", value: project.participationRate }]
+      : []),
+  ];
+
+  const sidebars = [
+    { label: "Tech Stack", title: "사용 기술", items: project.techStack },
+    { label: "Environment", title: "개발 환경", items: project.environment },
+  ];
+
   return (
-    <article className="pb-20 md:pb-28">
+    <article className="pb-24 md:pb-32">
       <div className="border-b border-border bg-surface">
-        <div className="container-page py-10 md:py-14">
+        <div className="container-page py-14 md:py-20">
           <Link
             href="/#projects"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="group label-mono inline-flex items-center gap-2.5 text-[0.7rem] tracking-[0.2em] text-muted transition-colors duration-300 hover:text-foreground"
           >
-            <ArrowLeft className="size-4" aria-hidden />
-            프로젝트 목록
+            <ArrowLeft
+              className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1"
+              aria-hidden
+            />
+            Back to Projects
           </Link>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <Tag>{project.client}</Tag>
-            <Tag>{project.periodLabel}</Tag>
-            <Tag>{project.role}</Tag>
-            {project.participationRate ? (
-              <Tag>{`참여율 ${project.participationRate}`}</Tag>
-            ) : null}
-          </div>
+          <p className="label-mono mt-12 text-[0.7rem] tracking-[0.3em] text-accent-ink">
+            Project
+          </p>
 
-          <h1 className="font-display mt-5 max-w-4xl text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
+          <h1 className="font-display mt-5 max-w-4xl text-3xl leading-[1.3] font-semibold text-foreground md:text-5xl md:leading-[1.22]">
             {project.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+
+          <p className="keep-all mt-6 max-w-2xl text-base leading-[1.95] text-muted md:text-lg">
             {project.summary}
           </p>
+
+          <dl className="mt-12 grid gap-6 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-4">
+            {meta.map((row) => (
+              <div key={row.label}>
+                <dt className="label-mono text-[0.65rem] tracking-[0.2em] text-subtle">
+                  {row.label}
+                </dt>
+                <dd className="keep-all mt-2 text-sm font-medium text-foreground">
+                  {row.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 
-      <div className="container-page mt-10 grid gap-10 md:mt-14 md:grid-cols-[1.4fr_0.8fr]">
-        <div className="space-y-8">
+      <div className="container-page mt-16 grid gap-14 md:mt-20 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.8fr)] lg:gap-20">
+        <div className="space-y-14">
           <section>
-            <h2 className="font-display text-2xl font-semibold tracking-tight">
-              프로젝트 개요
-            </h2>
-            <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-muted">
+            <div className="flex items-center gap-5">
+              <h2 className="label-mono text-[0.72rem] tracking-[0.24em] text-foreground">
+                Overview
+              </h2>
+              <span aria-hidden className="rule-fade h-px flex-1" />
+            </div>
+            <p className="keep-all mt-7 text-base leading-[2] whitespace-pre-line text-muted">
               {project.description}
             </p>
           </section>
 
           {project.responsibilities.length > 0 ? (
             <section>
-              <h2 className="font-display text-2xl font-semibold tracking-tight">
-                주요 업무
-              </h2>
-              <ul className="mt-4 space-y-3">
-                {project.responsibilities.map((item) => (
+              <div className="flex items-center gap-5">
+                <h2 className="label-mono text-[0.72rem] tracking-[0.24em] text-foreground">
+                  Responsibilities
+                </h2>
+                <span aria-hidden className="rule-fade h-px flex-1" />
+              </div>
+              <ul className="mt-7">
+                {project.responsibilities.map((item, index) => (
                   <li
                     key={item}
-                    className="flex gap-3 text-base leading-relaxed text-muted"
+                    className="keep-all flex gap-5 border-b border-border/70 py-4 text-[0.95rem] leading-[1.9] text-muted last:border-b-0"
                   >
                     <span
-                      className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
                       aria-hidden
-                    />
+                      className="label-mono shrink-0 pt-1 text-[0.65rem] tracking-[0.18em] text-subtle"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -72,32 +106,25 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           ) : null}
         </div>
 
-        <aside className="space-y-6">
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-            <h2 className="text-sm font-medium tracking-[0.12em] text-subtle uppercase">
-              사용 기술
-            </h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {project.techStack.map((tech) => (
-                <li key={tech}>
-                  <Tag>{tech}</Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6">
-            <h2 className="text-sm font-medium tracking-[0.12em] text-subtle uppercase">
-              개발 환경
-            </h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {project.environment.map((item) => (
-                <li key={item}>
-                  <Tag>{item}</Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <aside className="space-y-5 md:space-y-6">
+          {sidebars.map((block) => (
+            <div
+              key={block.label}
+              className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 md:p-8"
+            >
+              <h2 className="label-mono text-[0.68rem] tracking-[0.22em] text-foreground">
+                {block.label}
+                <span className="sr-only"> {block.title}</span>
+              </h2>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {block.items.map((item) => (
+                  <li key={item}>
+                    <Tag>{item}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </aside>
       </div>
     </article>

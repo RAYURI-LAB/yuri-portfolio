@@ -1,7 +1,54 @@
 import type { ReactNode } from "react";
 
+interface SectionHeaderProps {
+  index?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  className?: string;
+}
+
+export function SectionHeader({
+  index,
+  eyebrow,
+  title,
+  description,
+  className = "",
+}: SectionHeaderProps) {
+  return (
+    <header className={`reveal ${className}`}>
+      {index ? (
+        <p className="label-mono text-[0.7rem] tracking-[0.3em] text-accent-ink">
+          {index}
+        </p>
+      ) : null}
+
+      {eyebrow ? (
+        <div className="mt-3 flex items-center gap-5">
+          <p className="label-mono text-sm tracking-[0.26em] text-foreground md:text-base">
+            {eyebrow}
+          </p>
+          <span aria-hidden className="rule-fade h-px flex-1" />
+        </div>
+      ) : null}
+
+      <div className="mt-7 grid gap-5 md:mt-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-16">
+        <h2 className="font-display text-[1.75rem] leading-[1.3] font-medium text-foreground md:text-[2.25rem]">
+          {title}
+        </h2>
+        {description ? (
+          <p className="keep-all max-w-2xl text-[0.95rem] leading-[1.95] text-muted md:text-base">
+            {description}
+          </p>
+        ) : null}
+      </div>
+    </header>
+  );
+}
+
 interface SectionProps {
   id?: string;
+  index?: string;
   eyebrow?: string;
   title: string;
   description?: string;
@@ -11,6 +58,7 @@ interface SectionProps {
 
 export function Section({
   id,
+  index,
   eyebrow,
   title,
   description,
@@ -20,24 +68,16 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-[var(--header-height)] py-20 md:py-28 ${className}`}
+      className={`scroll-mt-[var(--header-height)] py-24 md:py-32 lg:py-40 ${className}`}
     >
       <div className="container-page">
-        <header className="mb-10 max-w-2xl md:mb-14">
-          {eyebrow ? (
-            <p className="mb-3 text-sm font-medium tracking-[0.14em] text-accent uppercase">
-              {eyebrow}
-            </p>
-          ) : null}
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            {title}
-          </h2>
-          {description ? (
-            <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              {description}
-            </p>
-          ) : null}
-        </header>
+        <SectionHeader
+          index={index}
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          className="mb-14 md:mb-20"
+        />
         {children}
       </div>
     </section>

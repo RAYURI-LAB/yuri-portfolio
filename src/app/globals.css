@@ -1,39 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  /* Surfaces */
-  --background: #f3f5f7;
-  --foreground: #15202b;
+  /* Surfaces — warm ivory */
+  --background: #faf9f6;
+  --foreground: #242424;
   --surface: #ffffff;
-  --surface-muted: #e8eef2;
-  --border: #cfd8e0;
-  --border-strong: #9aabba;
+  --surface-muted: #f5f2ed;
+  --border: #e8e4de;
+  --border-strong: #d8d3cc;
 
-  /* Brand accent — teal, not purple */
-  --accent: #0f766e;
-  --accent-hover: #0d5f59;
-  --accent-soft: #d7f0ed;
-  --accent-ink: #0a4f4a;
+  /* Accent — dusty pink (primary emphasis) */
+  --accent: #d88c9a;
+  --accent-hover: #c9788a;
+  --accent-soft: #f8ecee;
+  --accent-ink: #a15a6b;
+
+  /* Accent — muted gold (small points only) */
+  --gold: #d8b878;
+  --gold-soft: #f7f0e1;
+  --gold-ink: #8b6c2f;
 
   /* Text */
-  --muted: #5b6b7a;
-  --subtle: #7a8b9a;
-
-  /* Hero atmosphere */
-  --hero-from: #dce8ef;
-  --hero-via: #eef3f6;
-  --hero-to: #f7f4ef;
-  --hero-glow: rgba(15, 118, 110, 0.14);
+  --muted: #77736f;
+  --subtle: #9c9791;
 
   /* Radii & elevation */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
-  --shadow-soft: 0 12px 40px rgba(21, 32, 43, 0.08);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.125rem;
 
   /* Layout */
-  --header-height: 4rem;
-  --content-max: 72rem;
+  --header-height: 4.5rem;
+  --content-max: 74rem;
 }
 
 @theme inline {
@@ -47,11 +45,13 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
   --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-ink: var(--gold-ink);
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--font-body), var(--font-kr), system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, "SFMono-Regular", monospace;
 }
 
 @layer base {
@@ -62,18 +62,40 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-body), system-ui, sans-serif;
+    font-family: var(--font-body), var(--font-kr), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
     background: var(--accent-soft);
     color: var(--accent-ink);
   }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+  }
 }
 
 @layer utilities {
+  /* Korean-first display stack: latin from the body face, hangul from Noto Sans KR */
   .font-display {
-    font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+    font-family: var(--font-body), var(--font-kr), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+
+  /* Editorial label: mono, uppercase, wide tracking */
+  .label-mono {
+    font-family:
+      var(--font-mono-face), ui-monospace, "SFMono-Regular", monospace;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .keep-all {
+    word-break: keep-all;
   }
 
   .container-page {
@@ -85,27 +107,50 @@
 
   @media (min-width: 768px) {
     .container-page {
-      padding-inline: 2rem;
+      padding-inline: 2.5rem;
     }
   }
 
   .hero-atmosphere {
     background:
-      radial-gradient(ellipse 70% 55% at 85% 15%, var(--hero-glow), transparent 55%),
-      radial-gradient(ellipse 55% 45% at 10% 80%, rgba(148, 163, 184, 0.22), transparent 50%),
-      linear-gradient(145deg, var(--hero-from), var(--hero-via) 45%, var(--hero-to));
+      radial-gradient(
+        ellipse 45% 35% at 82% 12%,
+        rgba(216, 140, 154, 0.1),
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 40% 30% at 8% 88%,
+        rgba(216, 184, 120, 0.08),
+        transparent 65%
+      ),
+      var(--background);
   }
 
   .hero-grid {
-    background-image:
-      linear-gradient(to right, rgba(21, 32, 43, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(21, 32, 43, 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(36, 36, 36, 0.08) 1px,
+      transparent 0
+    );
+    background-size: 30px 30px;
+    mask-image: radial-gradient(
+      ellipse 65% 55% at 50% 45%,
+      black 5%,
+      transparent 72%
+    );
+  }
+
+  .rule-fade {
+    background: linear-gradient(
+      to right,
+      var(--border),
+      var(--border) 60%,
+      transparent
+    );
   }
 
   .animate-fade-up {
-    animation: fade-up 0.7s ease-out both;
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .animate-fade-in {
@@ -113,22 +158,41 @@
   }
 
   .animate-delay-1 {
-    animation-delay: 0.12s;
+    animation-delay: 0.09s;
   }
 
   .animate-delay-2 {
-    animation-delay: 0.24s;
+    animation-delay: 0.18s;
   }
 
   .animate-delay-3 {
+    animation-delay: 0.27s;
+  }
+
+  .animate-delay-4 {
     animation-delay: 0.36s;
+  }
+
+  .animate-delay-5 {
+    animation-delay: 0.45s;
+  }
+}
+
+/* Scroll-linked reveal. Content stays visible where view() is unsupported. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
   }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(1.25rem);
   }
   to {
     opacity: 1;
